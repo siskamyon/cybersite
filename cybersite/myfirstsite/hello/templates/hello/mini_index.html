@@ -1,0 +1,10 @@
+{% extends 'hello/baza.html' %}
+{% block content %}
+<h1>{{post.title}}</h1>
+
+{% if post.img %}
+<p><img class="img" src="{{post.img.url}}"></p>
+{% endif %}
+
+{{post.content|linebreaks}}
+{% endblock %}

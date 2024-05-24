@@ -1,0 +1,26 @@
+{% extends 'hello/baza.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<p>Мы - главный киберспортивный сайт Казанского Федерального Университета</p>
+<h2>***</h2>
+<ul class="list-articles">
+    {% for p in posts %}
+            <li><div class="article-panel">
+        <p class="first">Категория: {{p.cat}}</p>
+        <p class="last">Дата: {{p.date|date:"d-m-Y H-i-s"}}</p>
+                </div>
+
+        {% if p.img %}
+            <p><img class="img-article-left thumb" src="{{p.img.url}}"></p>
+        {% endif %} 
+                <h2>{{p.title}}</h2>
+                {% autoescape on %}
+                {{p.content|linebreaks|truncatewords:50}}
+                {% endautoescape %}
+            <div class="clear"></div>    
+            <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее...</a></p>
+            </li>
+    {% endfor %}
+</ul>
+{% endblock %}
